@@ -41,6 +41,9 @@ class LeadService {
           _params.status = 'dropped'
         }
       }
+
+      const {first_name, last_name} = _params;
+      _params.full_name = `${first_name || ''} ${last_name || ''}`.trim();
       
       if(_params._id){
         const exists = await Lead.findOne({_id: _params._id}).lean()
